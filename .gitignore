@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/Manaka_v1.1.3
+/BuildDeployRun
+/FlanDev.SFM/lib
