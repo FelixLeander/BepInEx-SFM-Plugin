@@ -1,32 +1,29 @@
-﻿using BepInEx;
+﻿#nullable disable
+
+using BepInEx;
 using ExposureUnnoticed2.Object3D.IngameManager;
 using System.Collections.Generic;
 using System.IO;
 using TMPro;
 using UnityEngine;
 
-namespace FlanDev.SFM.UI;
+namespace FlanDev.SFM;
 
 internal static class PluginFonts
 {
-    private static TMP_FontAsset sans;
+    private static readonly TMP_FontAsset sans;
 
-    private static TMP_FontAsset serif;
+    private static readonly TMP_FontAsset serif;
 
-    private static GameObject g_sans;
+    private static readonly GameObject g_sans;
 
-    private static GameObject g_serif;
+    private static readonly GameObject g_serif;
 
     public static TMP_FontAsset Sans => sans ?? AssetReferencer.Instance.defaultFont;
 
     public static TMP_FontAsset Serif => serif ?? AssetReferencer.Instance.defaultFont;
 
     static PluginFonts()
-    {
-        LoadFonts();
-    }
-
-    private static void LoadFonts()
     {
         List<string> countyCodes = ["", "JP", "SC", "TC", "KR"];
         List<string> fontFormats = ["ttf", "otf"];
@@ -42,7 +39,6 @@ internal static class PluginFonts
                     {
                         continue;
                     }
-                    Plugin.logSource.LogDebug($"Load Font {fileName}");
                     Font font = new(filePath);
                     TMP_FontAsset tMP_FontAsset = TMP_FontAsset.CreateFontAsset(font);
                     Object.DontDestroyOnLoad(tMP_FontAsset);
@@ -74,7 +70,6 @@ internal static class PluginFonts
                 {
                     continue;
                 }
-                Plugin.logSource.LogDebug($"Load Font {Path.GetFileName(text2)}");
                 Font font2 = new(text2);
                 TMP_FontAsset tMP_FontAsset2 = TMP_FontAsset.CreateFontAsset(font2);
                 Object.DontDestroyOnLoad(tMP_FontAsset2);
@@ -88,6 +83,7 @@ internal static class PluginFonts
                 break;
             }
         }
+
         g_serif = new GameObject();
         Object.DontDestroyOnLoad(g_serif);
         TextMeshProUGUI textMeshProUGUI2 = g_serif.AddComponent<TextMeshProUGUI>();
@@ -99,9 +95,7 @@ internal static class PluginFonts
         font.fallbackFontAssetTable ??= new Il2CppSystem.Collections.Generic.List<TMP_FontAsset>();
 
         if (!font.fallbackFontAssetTable.Contains(fallback))
-        {
             font.fallbackFontAssetTable.Add(fallback);
-        }
     }
 
     public static void AddFallbackFontAssets()
@@ -113,10 +107,5 @@ internal static class PluginFonts
         AddFallbackFontAssets(AssetReferencer.Instance.fontSc, serif);
         AddFallbackFontAssets(AssetReferencer.Instance.fontTc, serif);
         AddFallbackFontAssets(AssetReferencer.Instance.fontKr, serif);
-    }
-
-    public static void Log()
-    {
-        Plugin.logSource.LogInfo($"Sans: {sans} {sans != null} {sans is not null} Serif: {serif} {serif != null} {serif is not null} Default: {AssetReferencer.Instance.defaultFont}");
     }
 }

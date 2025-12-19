@@ -1,19 +1,24 @@
-﻿using ExposureUnnoticed2.Object3D.IngameManager;
+﻿#nullable disable
+
+using BepInEx.Logging;
+using ExposureUnnoticed2.Object3D.IngameManager;
 using ExposureUnnoticed2.ObjectUI.InGameMenu;
 using ExposureUnnoticed2.Scripts.InGame;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text.Json;
 using TMPro;
-using UnityEngine.EventSystems;
-using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
-namespace FlanDev.SFM.UI;
+namespace FlanDev.SFM.OldUi;
 
-public sealed class UiHelper : MonoBehaviour
+public sealed class UiTemplate : MonoBehaviour
 {
+    internal ManualLogSource Log = new(nameof(UiTemplate));
+
     private static readonly Sprite defaultSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0f, 0f, Texture2D.whiteTexture.width, Texture2D.whiteTexture.height), new Vector2(0.5f, 0.5f));
     public class Window
     {
@@ -25,33 +30,33 @@ public sealed class UiHelper : MonoBehaviour
 
         public Window(string name, Color backgroundcolor)
         {
-            gameObject = CreateRect(name + "App", Approot, new Vector2(scale * -2f, scale * (-2f - topbarheight)), backgroundcolor);
+            gameObject = CreateRect($"{name}App", Approot, new Vector2(Scale * -2f, Scale * (-2f - topbarheight)), backgroundcolor);
             gameObject.active = false;
-            SetPosition(gameObject, new Vector2(scale * 1f, scale * 1f), null, new Vector2(0f, 0f), new Vector2(1f, 1f));
-            SetBorder(gameObject, scale * roundcorners);
+            SetPosition(gameObject, new Vector2(Scale * 1f, Scale * 1f), null, new Vector2(0f, 0f), new Vector2(1f, 1f));
+            SetBorder(gameObject, Scale * roundcorners);
             CreateMenuBar(gameObject, name, menubarheight);
             windows.Add(this);
         }
 
         private GameObject CreateMenuBar(GameObject window, string title, float height)
         {
-            GameObject gameObject = CreateRect("MenuBar", window, new Vector2(0f, scale * height), new Color(0.8f, 0.8f, 0.8f));
+            GameObject gameObject = CreateRect("MenuBar", window, new Vector2(0f, Scale * height), new Color(0.8f, 0.8f, 0.8f));
             SetPosition(gameObject, new Vector2(0f, 0f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(1f, 1f));
-            GameObject gameObject2 = CreateText(title, gameObject, new Vector2((0f - scale) * 2f * height, 0f), Color.black, height - 4f);
-            SetPosition(gameObject2, new Vector2(scale * height, 0f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(1f, 1f));
+            GameObject gameObject2 = CreateText(title, gameObject, new Vector2((0f - Scale) * 2f * height, 0f), Color.black, height - 4f);
+            SetPosition(gameObject2, new Vector2(Scale * height, 0f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(1f, 1f));
             TextMeshProUGUI component = gameObject2.GetComponent<TextMeshProUGUI>();
             component.enableAutoSizing = true;
-            component.fontSizeMax = scale * (height - 4f);
+            component.fontSizeMax = Scale * (height - 4f);
             float num = height - 4f;
-            backbutton = CreateRect("BackButton", gameObject, new Vector2(scale * num, scale * num), new Color(0.95f, 0.95f, 0.95f));
-            SetPosition(backbutton, new Vector2(scale * height / 2f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(0f, 0.5f));
-            SetBorder(backbutton, scale * num / 2f);
+            backbutton = CreateRect("BackButton", gameObject, new Vector2(Scale * num, Scale * num), new Color(0.95f, 0.95f, 0.95f));
+            SetPosition(backbutton, new Vector2(Scale * height / 2f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(0f, 0.5f));
+            SetBorder(backbutton, Scale * num / 2f);
             Button button = backbutton.AddComponent<Button>();
             button.onClick.AddListener((Action)delegate
             {
                 ShowPreviousWindow();
             });
-            GameObject o = CreateRect("BackButtonIcon", backbutton, new Vector2(scale * -2f, scale * -2f), new Color(0f, 0f, 0f));
+            GameObject o = CreateRect("BackButtonIcon", backbutton, new Vector2(Scale * -2f, Scale * -2f), new Color(0f, 0f, 0f));
             SetPosition(o, new Vector2(0f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(1f, 1f));
             return gameObject;
         }
@@ -103,60 +108,50 @@ public sealed class UiHelper : MonoBehaviour
         {
         }
 
-        public override void OnShow()
-        {
-            base.OnShow();
-        }
+        public override void OnShow() => base.OnShow();
     }
 
     private static MainMenu mainMenu;
 
-    private static UiHelper instance;
+    private static UiTemplate instance;
 
-    public GameObject gui;
+    public GameObject gameGui;
 
     private static Window currWindow;
 
     private GameObject messengerGlobalIcon;
 
-    private static float scale = 2f;
+    private static float Scale = 2f;
 
-    private static float topbarheight = 10f;
+    private static readonly float topbarheight = 10f;
 
-    private static float roundcorners = 9f;
+    private static readonly float roundcorners = 9f;
 
-    private static float menubarheight = 14f;
+    private static readonly float menubarheight = 14f;
 
-    private readonly TMP_FontAsset font;
+    //private readonly TMP_FontAsset font;
 
     private static GameObject Approot;
 
-    private static List<Window> windows;
+    private static readonly List<Window> windows = [];
 
-    public UiHelper()
-    {
-        instance = this;
-        windows = [];
-    }
+    public UiTemplate() => instance = this;
 
     public void UpdateGUIScale()
     {
-        scale = gui.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
+        Scale = gameGui.GetComponent<Canvas>().GetComponent<RectTransform>().rect.width;
         if (GameState.OptionData.AspectRatioIndex == 0)
-        {
-            scale /= 1920f;
-        }
+            Scale /= 1920f;
         else
-        {
-            scale /= 2560f;
-        }
-        scale *= 3f;
+            Scale /= 2560f;
+
+        Scale *= 3f;
     }
 
     public static GameObject CreateRect(string name, GameObject parent, Vector2 size, Color color, Sprite sprite = null)
     {
-        GameObject gameObject = new GameObject(name);
-        UnityEngine.Object.DontDestroyOnLoad(gameObject);
+        var gameObject = new GameObject(name);
+        DontDestroyOnLoad(gameObject);
         gameObject.transform.parent = parent.transform;
         RectTransform rectTransform = gameObject.AddComponent<RectTransform>();
         rectTransform.sizeDelta = size;
@@ -185,12 +180,12 @@ public sealed class UiHelper : MonoBehaviour
 
     private static GameObject CreateText(string caption, GameObject parent, Vector2 size, Color color, float fontsize, TextAlignmentOptions alignment = TextAlignmentOptions.Center)
     {
-        GameObject gameObject = new GameObject();
+        var gameObject = new GameObject();
         gameObject.transform.parent = parent.transform;
         TextMeshProUGUI textMeshProUGUI = gameObject.AddComponent<TextMeshProUGUI>();
         textMeshProUGUI.text = caption;
         textMeshProUGUI.alignment = alignment;
-        textMeshProUGUI.fontSize = scale * fontsize;
+        textMeshProUGUI.fontSize = Scale * fontsize;
         textMeshProUGUI.font = PluginFonts.Sans;
         textMeshProUGUI.rectTransform.anchorMin = new Vector2(0f, 0f);
         textMeshProUGUI.rectTransform.anchorMax = new Vector2(1f, 1f);
@@ -231,11 +226,9 @@ public sealed class UiHelper : MonoBehaviour
     public static void AddEventListener(GameObject obj, EventTriggerType type, UnityAction<BaseEventData> action)
     {
         if (obj.GetComponent<EventTrigger>() == null)
-        {
             obj.AddComponent<EventTrigger>();
-        }
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = type;
+
+        EventTrigger.Entry entry = new() { eventID = type };
         entry.callback.AddListener(action);
         obj.GetComponent<EventTrigger>().triggers.Add(entry);
     }
@@ -243,11 +236,10 @@ public sealed class UiHelper : MonoBehaviour
     public static void AddEventListener(GameObject obj, EventTriggerType type, UnityAction<PointerEventData> action)
     {
         if (obj.GetComponent<EventTrigger>() == null)
-        {
             obj.AddComponent<EventTrigger>();
-        }
-        EventTrigger.Entry entry = new EventTrigger.Entry();
-        entry.eventID = type;
+
+
+        EventTrigger.Entry entry = new() { eventID = type };
         entry.callback.AddListener((Action<BaseEventData>)delegate (BaseEventData data)
         {
             action.Invoke(ExecuteEvents.ValidateEventData<PointerEventData>(data));
@@ -255,26 +247,26 @@ public sealed class UiHelper : MonoBehaviour
         obj.GetComponent<EventTrigger>().triggers.Add(entry);
     }
 
-    private GameObject CreateTopBar(GameObject menu)
+    private static GameObject CreateTopBar(GameObject menu)
     {
-        GameObject gameObject = CreateRect("TopBar", menu, new Vector2(scale * -2f, scale * topbarheight), new Color(0f, 0f, 0f));
-        SetPosition(gameObject, new Vector2(scale * 1f, scale * -1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(1f, 1f));
-        SetBorder(gameObject, scale * 9f);
-        GameObject o = CreateRect("Signal", gameObject, new Vector2(scale * 4f * 8f, scale * 8f), new Color(1f, 1f, 1f));
-        SetPosition(o, new Vector2(scale * -6f, 0f), new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(1f, 0.5f));
+        GameObject gameObject = CreateRect("TopBar", menu, new Vector2(Scale * -2f, Scale * topbarheight), new Color(0f, 0f, 0f));
+        SetPosition(gameObject, new Vector2(Scale * 1f, Scale * -1f), new Vector2(0f, 1f), new Vector2(0f, 1f), new Vector2(1f, 1f));
+        SetBorder(gameObject, Scale * 9f);
+        GameObject o = CreateRect("Signal", gameObject, new Vector2(Scale * 4f * 8f, Scale * 8f), new Color(1f, 1f, 1f));
+        SetPosition(o, new Vector2(Scale * -6f, 0f), new Vector2(1f, 0.5f), new Vector2(1f, 0.5f), new Vector2(1f, 0.5f));
         return gameObject;
     }
 
     public static GameObject CreateCheckbox(GameObject parent, float size, bool active, bool enabled, UnityAction<bool> action)
     {
-        GameObject gameObject = CreateRect("Outer", parent, new Vector2(scale * size, scale * size), new Color(0f, 0f, 0f));
+        GameObject gameObject = CreateRect("Outer", parent, new Vector2(Scale * size, Scale * size), new Color(0f, 0f, 0f));
         SetPosition(gameObject, null, new Vector2(0.5f, 0.5f), new Vector2(0f, 1f), new Vector2(0f, 1f));
-        SetBorder(gameObject, scale * size / 4f);
+        SetBorder(gameObject, Scale * size / 4f);
         Button button = gameObject.AddComponent<Button>();
-        GameObject gameObject2 = CreateRect("Outer", gameObject, new Vector2(scale * -1f, scale * -1f), new Color(1f, 1f, 1f));
+        GameObject gameObject2 = CreateRect("Outer", gameObject, new Vector2(Scale * -1f, Scale * -1f), new Color(1f, 1f, 1f));
         SetPosition(gameObject2, null, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(1f, 1f));
-        SetBorder(gameObject2, scale * (size / 4f - 1f));
-        GameObject tick = CreateRect("Tick", gameObject2, new Vector2(scale * -1f, scale * -1f), new Color(0f, 0f, 0f));
+        SetBorder(gameObject2, Scale * ((size / 4f) - 1f));
+        GameObject tick = CreateRect("Tick", gameObject2, new Vector2(Scale * -1f, Scale * -1f), new Color(0f, 0f, 0f));
         SetPosition(tick, null, new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(1f, 1f));
         tick.active = active;
         if (enabled)
@@ -300,9 +292,9 @@ public sealed class UiHelper : MonoBehaviour
 
     public static GameObject CreateNotifyIcon(GameObject parent, float size)
     {
-        GameObject gameObject = CreateRect("NotifyIcon", parent, new Vector2(scale * size, scale * size), Color.red);
+        GameObject gameObject = CreateRect("NotifyIcon", parent, new Vector2(Scale * size, Scale * size), Color.red);
         SetPosition(gameObject, new Vector2(0f, 0f), new Vector2(1f, 1f), new Vector2(1f, 1f), new Vector2(1f, 1f));
-        SetBorder(gameObject, scale * size / 2f);
+        SetBorder(gameObject, Scale * size / 2f);
         GameObject o = CreateRect("NotifyIcon2", gameObject, new Vector2(0f, 0f), Color.white);
         SetPosition(o, null, null, new Vector2(0f, 0f), new Vector2(1f, 1f));
         return gameObject;
@@ -310,54 +302,62 @@ public sealed class UiHelper : MonoBehaviour
 
     public static GameObject CreateButton(GameObject parent, string name, float size, Color color, string icon, UnityAction action)
     {
-        GameObject gameObject = CreateRect(name + "Button", parent, new Vector2(scale * size, scale * size), color);
-        SetBorder(gameObject, scale * 4f);
+        GameObject gameObject = CreateRect($"{name}Button", parent, new Vector2(Scale * size, Scale * size), color);
+        SetBorder(gameObject, Scale * 4f);
         if (action != null)
         {
             Button button = gameObject.AddComponent<Button>();
             button.onClick.AddListener(action);
         }
-        GameObject o = CreateRect(name + "Icon", gameObject, new Vector2(scale * (size - 4f), scale * (size - 4f)), Color.white);
+        GameObject o = CreateRect($"{name}Icon", gameObject, new Vector2(Scale * (size - 4f), Scale * (size - 4f)), Color.white);
         SetPosition(o, null, new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f), new Vector2(0.5f, 0.5f));
         return gameObject;
     }
 
-    private void CreateGUI(GameObject parent)
+    private void EnusreGuiCreated(GameObject parent)
     {
-        if (gui == null)
+        if (gameGui != null)
+            return;
+
+        gameGui = new GameObject("MyPhoneGUI");
+        DontDestroyOnLoad(gameGui);
+        
+        var canvas = gameGui.AddComponent<Canvas>();
+        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+
+        GraphicRaycaster graphicRaycaster = gameGui.AddComponent<GraphicRaycaster>();
+        graphicRaycaster.enabled = true;
+        if (parent != null)
         {
-            gui = new GameObject("MyPhoneGUI");
-            DontDestroyOnLoad(gui);
-            var canvas = gui.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-            GraphicRaycaster graphicRaycaster = gui.AddComponent<GraphicRaycaster>();
-            graphicRaycaster.enabled = true;
-            if (parent != null)
-            {
-                gui.transform.SetParent(parent.transform);
-            }
-
-            UpdateGUIScale();
-            GameObject gameObject = CreateRect("OuterCase", gui, new Vector2(scale * 100f, scale * 190f), new Color(0f, 0.1f, 0.8f));
-            SetPosition(gameObject, new Vector2(0f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f));
-            SetBorder(gameObject, scale * 15f);
-            GameObject o = CreateRect("OuterCaseSheen", gameObject, new Vector2(0f, 0f), new Color(1f, 1f, 1f, 0.25f));
-            SetPosition(o, null, null, new Vector2(0f, 0f), new Vector2(1f, 1f));
-            SetBorder(o, scale * 15f);
-            GameObject o2 = CreateRect("OuterCaseShadow", gameObject, new Vector2(0f, 0f), new Color(0f, 0f, 0f, 2f));
-            SetPosition(o2, null, null, new Vector2(0f, 0f), new Vector2(1f, 1f));
-            SetBorder(o2, scale * 15f);
-            Approot = CreateRect("InnerCase", gameObject, new Vector2(scale * -10f, scale * -10f), Color.black);
-            SetPosition(Approot, new Vector2(scale * 5f, scale * 5f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(1f, 1f));
-            SetBorder(Approot, scale * 10f);
-            CreateTopBar(Approot);
-
-            if (mainMenu == null || mainMenu.gameObject == null)
-                mainMenu = new MainMenu();
-
-            currWindow = null;
-            ShowWindow(mainMenu);
+            gameGui.transform.SetParent(parent.transform);
         }
+
+        Log.LogWarning($"Scale before {Scale}");
+        UpdateGUIScale();
+        Log.LogWarning($"Scale after {Scale}");
+
+        GameObject gameObject = CreateRect("OuterCase", gameGui, new Vector2(Scale * 100f, Scale * 190f), new Color(0f, 0.1f, 0.8f));
+        SetPosition(gameObject, new Vector2(0f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f), new Vector2(0.5f, 0f));
+        SetBorder(gameObject, Scale * 15f);
+
+        GameObject o = CreateRect("OuterCaseSheen", gameObject, new Vector2(0f, 0f), new Color(1f, 1f, 1f, 0.25f));
+        SetPosition(o, null, null, new Vector2(0f, 0f), new Vector2(1f, 1f));
+        SetBorder(o, Scale * 15f);
+
+        GameObject o2 = CreateRect("OuterCaseShadow", gameObject, new Vector2(0f, 0f), new Color(0f, 0f, 0f, 2f));
+        SetPosition(o2, null, null, new Vector2(0f, 0f), new Vector2(1f, 1f));
+        SetBorder(o2, Scale * 15f);
+
+        Approot = CreateRect("InnerCase", gameObject, new Vector2(Scale * -10f, Scale * -10f), Color.black);
+        SetPosition(Approot, new Vector2(Scale * 5f, Scale * 5f), new Vector2(0f, 0f), new Vector2(0f, 0f), new Vector2(1f, 1f));
+        SetBorder(Approot, Scale * 10f);
+        CreateTopBar(Approot);
+
+        if (mainMenu == null || mainMenu.gameObject == null)
+            mainMenu = new MainMenu();
+
+        currWindow = null;
+        ShowWindow(mainMenu);
     }
 
     private void CreateMessengerGlobalIcon()
@@ -366,7 +366,7 @@ public sealed class UiHelper : MonoBehaviour
         {
             GameObject parent = InGameUiManager.Instance.middleCloneLayer.gameObject;
             messengerGlobalIcon = CreateButton(parent, "MessengerNotify", 20f, new Color(0f, 0.9f, 0f), "messenger_icon", null);
-            SetPosition(messengerGlobalIcon, new Vector2((0f - scale) * 360f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f));
+            SetPosition(messengerGlobalIcon, new Vector2((0f - Scale) * 360f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f), new Vector2(1f, 0f));
             CreateNotifyIcon(messengerGlobalIcon, 8f);
             messengerGlobalIcon.active = false;
         }
@@ -374,7 +374,7 @@ public sealed class UiHelper : MonoBehaviour
 
     public static void ShowWindow(Window newwindow)
     {
-        if (instance.gui != null && instance.gui.active)
+        if (instance.gameGui != null && instance.gameGui.active)
         {
             if (currWindow != null)
             {
@@ -390,7 +390,7 @@ public sealed class UiHelper : MonoBehaviour
 
     public static void ShowPreviousWindow()
     {
-        if (instance.gui != null && instance.gui.active && currWindow != null)
+        if (instance.gameGui != null && instance.gameGui.active && currWindow != null)
         {
             currWindow.gameObject.active = false;
             currWindow.OnHide();
@@ -404,35 +404,29 @@ public sealed class UiHelper : MonoBehaviour
         }
     }
 
-    public void SetActive(GameObject parent, bool _active)
+    public void SetActive(GameObject parent, bool active)
     {
-        if (_active)
-        {
-            CreateGUI(parent);
-        }
-        if ((bool)gui)
-        {
-            gui.active = _active;
-        }
+        if (active)
+            EnusreGuiCreated(parent);
+
+        if ((bool)gameGui)
+            gameGui.active = active;
     }
 
     public void Update()
     {
-        if (InGameMenuView.Instance != null)
-        {
-            InGameMenuView inGameMenuView = InGameMenuView.Instance;
-            GameObject parent = inGameMenuView.gameObject;
-            SetActive(parent, inGameMenuView.currentState == InGameMenuView.State.Show && !inGameMenuView.isOpenChild);
-        }
+        if (InGameMenuView.Instance == null)
+            SetActive(null, false);
         else
         {
-            SetActive(null, _active: false);
+            var inGameMenuView = InGameMenuView.Instance;
+            var active = inGameMenuView.currentState == InGameMenuView.State.Show && !inGameMenuView.isOpenChild;
+            SetActive(inGameMenuView.gameObject, active);
         }
 
-        foreach (Window item in windows.ToList())
-        {
+        foreach (var item in windows)
             item.Update();
-        }
+
         CreateMessengerGlobalIcon();
     }
 }

@@ -1,47 +1,41 @@
 ﻿using BepInEx;
-using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using ExposureUnnoticed2.ObjectUI.SystemMenu;
+using FlanDev.SFM.FuckIt;
 using FlanDev.SFM.UI;
 using HarmonyLib;
-using System;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace FlanDev.SFM;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-public class Plugin : BasePlugin
+public sealed class Plugin : BasePlugin
 {
-    internal static ManualLogSource logSource;
-    public static UiHelper Ui { get; set; }
+    /// <summary>
+    /// Creating and holdign a reference to it, so that it won't be destroyed and <see cref="NativeOverwrite.Update"/> will be called.
+    /// </summary>
+    internal static NativeOverwrite? InplaceRewrite { get; set; }
+
+    // internal static UiTemplate? UiTemplate { get; set; }
+
+    private readonly Harmony _harmony = new(MyPluginInfo.PLUGIN_GUID);
+
     public override void Load()
     {
-        logSource = base.Log;
-        logSource.LogError($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        _harmony.PatchAll();
 
-        var harmony = new Harmony(MyPluginInfo.PLUGIN_GUID);
-        harmony.PatchAll();
+        //UiTemplate = AddComponent<UiTemplate>();
+        //UiTemplate.Log = Log;
 
-        Ui = AddComponent<UiHelper>();
-        Ui.hideFlags = HideFlags.HideAndDontSave;
+        InplaceRewrite = AddComponent<NativeOverwrite>();
+        InplaceRewrite.Log  = Log;
+        //MinimalTest.hideFlags = HideFlags.HideAndDontSave;
+
+        Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
     }
 
-    [HarmonyPatch(typeof(SystemMenuView), nameof(SystemMenuView.Initialize))]
-    [HarmonyPostfix]
-    public static void InitializePatch(SystemMenuView __instance)
+    public override bool Unload()
     {
-        logSource.LogError($"Patch {InitializePatch} called.");
-
-        var gameObject = new GameObject("Button");
-        gameObject.transform.SetParent(__instance.transform);
-
-        var button = gameObject.AddComponent<Button>();
-        button.onClick.AddListener((Action) delegate
-        {
-            logSource.LogWarning("Button Clicked!");
-        });
-
-        __instance.buttonss.AddItem(button);
+        _harmony.UnpatchSelf();
+        return base.Unload();
     }
 }

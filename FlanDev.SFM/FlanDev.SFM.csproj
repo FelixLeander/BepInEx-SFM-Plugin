@@ -13,6 +13,7 @@
       https://nuget.samboy.dev/v3/index.json
     </RestoreAdditionalProjectSources>
     <RootNamespace>FlanDev.SFM</RootNamespace>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -46,4 +47,8 @@
       <HintPath>lib\UnityEngine.UIModule.dll</HintPath>
     </Reference>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="&quot;C:\Repos\FelixLeander.Manaka\BuildDeployRun.exe&quot;" />
+  </Target>
 </Project>
