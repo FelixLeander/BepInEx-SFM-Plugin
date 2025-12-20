@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BuildDeployRun", "BuildDeployRun\BuildDeployRun.csproj", "{1AB033FE-69AF-4EEA-B359-CCBC9DA97154}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanDev.SFM", "FlanDev.SFM\FlanDev.SFM.csproj", "{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}"
 EndProject
 Global
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1AB033FE-69AF-4EEA-B359-CCBC9DA97154}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1AB033FE-69AF-4EEA-B359-CCBC9DA97154}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1AB033FE-69AF-4EEA-B359-CCBC9DA97154}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1AB033FE-69AF-4EEA-B359-CCBC9DA97154}.Release|Any CPU.Build.0 = Release|Any CPU
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Release|Any CPU.ActiveCfg = Release|Any CPU

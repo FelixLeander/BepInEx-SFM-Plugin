@@ -17,8 +17,6 @@ namespace FlanDev.SFM.OldUi;
 
 public sealed class UiTemplate : MonoBehaviour
 {
-    internal ManualLogSource Log = new(nameof(UiTemplate));
-
     private static readonly Sprite defaultSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0f, 0f, Texture2D.whiteTexture.width, Texture2D.whiteTexture.height), new Vector2(0.5f, 0.5f));
     public class Window
     {
