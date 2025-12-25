@@ -12,7 +12,7 @@ public sealed class Plugin : BasePlugin
     /// <summary>
     /// Creating and holdign a reference to it, so that it won't be destroyed and <see cref="IrlVibsSetup.Update"/> will be called.
     /// </summary>
-    internal static IrlVibsSetup? InplaceRewrite { get; set; }
+    internal static IrlVibsSetup? IrlVibsSetup { get; set; }
 
     private readonly Harmony _harmony = new(MyPluginInfo.PLUGIN_GUID);
 
@@ -20,8 +20,8 @@ public sealed class Plugin : BasePlugin
     {
         _harmony.PatchAll();
 
-        InplaceRewrite = AddComponent<IrlVibsSetup>();
-        InplaceRewrite.Log = Log;
+        IrlVibsSetup = AddComponent<IrlVibsSetup>();
+        IrlVibsSetup.Log = Log;
         Helper.Logger = Log;
 
         Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");

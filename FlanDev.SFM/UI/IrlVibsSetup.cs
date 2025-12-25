@@ -1,23 +1,30 @@
 ﻿using BepInEx.Logging;
 using ExposureUnnoticed2.ObjectUI.SystemMenu;
-using HadakaCoat.ObjectsUi.Common.Button;
-using System;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 namespace FlanDev.SFM.UI;
 
 public sealed class IrlVibsSetup : MonoBehaviour
 {
-    private BackPlane? BackPlane;
+    public ManualLogSource Log = new(nameof(IrlVibsSetup));
+    public BackPlane? rootObject;
+
+    public void Awake()
+    {
+        rootObject ??= gameObject.AddComponent<BackPlane>();
+    }
+
     public void Update()
     {
-        if (SystemMenuView.Instance == null)
+        if (!SystemMenuView.Instance)
             return;
 
-        BackPlane ??= new BackPlane(SystemMenuView.Instance.gameObject);
+        if (rootObject)
+            rootObject?.gameObject.SetActive(true);
+        else
+            Log.LogError($"{nameof(rootObject)} not initialized.");
     }
     //public void Update_B()
     //{
@@ -81,80 +88,4 @@ public sealed class IrlVibsSetup : MonoBehaviour
     //    _postInitalFrame = true;
     //    Log.LogInfo("Custom Button Successfully Created and Parented!");
     //}
-}
-
-public static class Helper
-{
-    public const float GoldenRatio = 20 / 9;
-    public static ManualLogSource? Logger { get; set; }
-    public static void Log(this string text, LogLevel logLevel = LogLevel.Info) => Logger?.Log(logLevel, text);
-
-}
-
-public sealed class ConnectButton(GameObject parent, string gameObjectName = nameof(ConnectButton)) : MonoBehaviour
-{
-    private GameObject? GameObject;
-    public void Update()
-    {
-        if (GameObject != null)
-            return;
-
-        GameObject = new GameObject(gameObjectName);
-        var rect = GameObject.AddComponent<RectTransform>();
-        GameObject.transform.SetParent(parent.transform);
-
-        var pRect = parent.GetComponent<RectTransform>();
-        var x = pRect.rect.width * 0.95f;
-
-        rect.sizeDelta = new Vector2(x, x / 8);
-        rect.anchoredPosition = new Vector3(0, (pRect.rect.height / 2) - (rect.sizeDelta.y / 2) - 8 - (i * (rect.sizeDelta.y + 8)));
-
-        var image = GameObject.AddComponent<Image>();
-        image.color = new Color(255, 20, 150, 0.5f);
-        image.pixelsPerUnitMultiplier = 1f;
-
-        var butttonView = GameObject.AddComponent<ButtonView>();
-        butttonView.transform.SetParent(rect);
-        butttonView.text = GameObject.AddComponent<TextMeshProUGUI>();
-        butttonView.text.font = TMP_Settings.defaultFontAsset;
-        butttonView.text.color = Color.magenta;
-        butttonView.text.fontSize = rect.sizeDelta.y * 0.8f;
-        butttonView.text.text = gameObjectName;
-
-        butttonView.button = GameObject.AddComponent<Button>();
-        butttonView.button.onClick.AddListener(new Action(() => $"Clicked button {gameObjectName}".Log()));
-    }
-}
-
-public sealed class BackPlane(GameObject parent, string gameObjectName = nameof(BackPlane)) : MonoBehaviour
-{
-    private GameObject? GameObject;
-
-    private readonly List<ConnectButton> ConnectButtons = [];
-
-    public void AddButton(ConnectButton button)
-    {
-        ConnectButtons.Add(button);
-    }
-
-    public void Update()
-    {
-        if (GameObject != null)
-            return;
-
-        GameObject = new GameObject(gameObjectName);
-        GameObject.transform.SetParent(parent.transform);
-
-        var x = parent.GetComponent<RectTransform>().rect.width / 4;
-        var y = x * Helper.GoldenRatio;
-
-        var rect = GameObject.AddComponent<RectTransform>();
-        rect.sizeDelta = new Vector2(x, y);
-        var half = rect.sizeDelta / 2;
-        rect.position = new Vector2(half.x + 8, half.y + 8);
-
-        var image = GameObject.AddComponent<Image>();
-        image.color = new Color(0, 0, 0, 0.5f);
-        image.pixelsPerUnitMultiplier = 1f;
-    }
 }

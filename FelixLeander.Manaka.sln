@@ -5,6 +5,8 @@ VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanDev.SFM", "FlanDev.SFM\FlanDev.SFM.csproj", "{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PatchAndRun", "PatchAndRun\PatchAndRun.csproj", "{6299D751-78B9-4647-A426-A463B12E900D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6299D751-78B9-4647-A426-A463B12E900D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6299D751-78B9-4647-A426-A463B12E900D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6299D751-78B9-4647-A426-A463B12E900D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6299D751-78B9-4647-A426-A463B12E900D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

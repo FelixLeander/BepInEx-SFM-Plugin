@@ -50,6 +50,6 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="&quot;C:\Repos\FelixLeander.Manaka\BuildDeployRun.exe&quot;" />
+    <Exec Command="../PatchAndRun.exe" />
   </Target>
 </Project>

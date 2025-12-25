@@ -1,4 +1,6 @@
 ﻿#nullable disable
+// ReSharper disable InconsistentNaming
+
 
 using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.IngameManager;
@@ -17,6 +19,7 @@ namespace FlanDev.SFM.OldUi;
 
 public sealed class UiTemplate : MonoBehaviour
 {
+    public static ManualLogSource Log { get; set; }
     private static readonly Sprite defaultSprite = Sprite.Create(Texture2D.whiteTexture, new Rect(0f, 0f, Texture2D.whiteTexture.width, Texture2D.whiteTexture.height), new Vector2(0.5f, 0.5f));
     public class Window
     {
@@ -24,7 +27,7 @@ public sealed class UiTemplate : MonoBehaviour
 
         public Window previousWindow;
 
-        private GameObject backbutton;
+        private GameObject backButton;
 
         public Window(string name, Color backgroundcolor)
         {
@@ -46,22 +49,22 @@ public sealed class UiTemplate : MonoBehaviour
             component.enableAutoSizing = true;
             component.fontSizeMax = Scale * (height - 4f);
             float num = height - 4f;
-            backbutton = CreateRect("BackButton", gameObject, new Vector2(Scale * num, Scale * num), new Color(0.95f, 0.95f, 0.95f));
-            SetPosition(backbutton, new Vector2(Scale * height / 2f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(0f, 0.5f));
-            SetBorder(backbutton, Scale * num / 2f);
-            Button button = backbutton.AddComponent<Button>();
+            backButton = CreateRect("BackButton", gameObject, new Vector2(Scale * num, Scale * num), new Color(0.95f, 0.95f, 0.95f));
+            SetPosition(backButton, new Vector2(Scale * height / 2f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0.5f), new Vector2(0f, 0.5f));
+            SetBorder(backButton, Scale * num / 2f);
+            Button button = backButton.AddComponent<Button>();
             button.onClick.AddListener((Action)delegate
             {
                 ShowPreviousWindow();
             });
-            GameObject o = CreateRect("BackButtonIcon", backbutton, new Vector2(Scale * -2f, Scale * -2f), new Color(0f, 0f, 0f));
+            GameObject o = CreateRect("BackButtonIcon", backButton, new Vector2(Scale * -2f, Scale * -2f), new Color(0f, 0f, 0f));
             SetPosition(o, new Vector2(0f, 0f), new Vector2(0.5f, 0.5f), new Vector2(0f, 0f), new Vector2(1f, 1f));
             return gameObject;
         }
 
         public virtual void OnShow()
         {
-            backbutton.active = previousWindow != null;
+            backButton.active = previousWindow != null;
         }
 
         public virtual void OnHide()
