@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
 		<AssemblyName>FlanDev.SFM</AssemblyName>
@@ -16,16 +15,34 @@
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
+	<PropertyGroup>
+		<OutputExt Condition="$([MSBuild]::IsOSPlatform('Windows'))">.exe</OutputExt>
+	</PropertyGroup>
+
+	<Target Name="PostBuildCopyToSolutionRoot" AfterTargets="PostBuildEvent">
+		<ItemGroup>
+			<ProjectOutputs Include="$(TargetPath)" />
+			<ProjectOutputs Include="$(TargetDir)$(MSBuildProjectName)$(OutputExt)" />
+		</ItemGroup>
+
+		<!--				DestinationFolder="$(SolutionDir)Manaka_v1.1.3/BepInEx/plugins/test/"-->
+		
+		
+		<Copy
+				SourceFiles="$(ProjectOutputs)"
+				DestinationFolder="../"
+				SkipUnchangedFiles="true" />
+<!--				<Exec Command="ls $(SolutionDir)Manaka_v1.1.3/BepInEx/plugins/" />-->
+				<Exec Command="pwd" />
+				<Exec Command="echo $(SolutionDir)" />
+	</Target>
+	
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
 		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
 	</ItemGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent">
-		<Exec Command="../PatchAndRun.exe" />
-	</Target>
-
+	
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
 			<HintPath>lib\Assembly-CSharp.dll</HintPath>
