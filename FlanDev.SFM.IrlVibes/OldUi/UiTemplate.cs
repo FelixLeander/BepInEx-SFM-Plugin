@@ -187,7 +187,7 @@ public sealed class UiTemplate : MonoBehaviour
         textMeshProUGUI.text = caption;
         textMeshProUGUI.alignment = alignment;
         textMeshProUGUI.fontSize = Scale * fontsize;
-        textMeshProUGUI.font = PluginFonts.Sans;
+        //textMeshProUGUI.font = PluginFonts.Sans;
         textMeshProUGUI.rectTransform.anchorMin = new Vector2(0f, 0f);
         textMeshProUGUI.rectTransform.anchorMax = new Vector2(1f, 1f);
         textMeshProUGUI.rectTransform.sizeDelta = size;

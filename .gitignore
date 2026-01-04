@@ -361,6 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Manaka_v1.1.3
-/FlanDev.SFM.PatchAndRun.exe
-/FlanDev.SFM.PatchAndRun.dll
+Manaka_Game/
+FlanDev.SFM.PatchAndRun.exe
+FlanDev.SFM.PatchAndRun.dll

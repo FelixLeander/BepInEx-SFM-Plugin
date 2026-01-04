@@ -5,16 +5,4 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
-
-	<Target Name="PostBuildCopyToSolutionRoot" AfterTargets="Build">
-		<ItemGroup>
-			<ProjectOutputs Include="$(TargetPath)" />
-			<ProjectOutputs Include="$(TargetDir)$(MSBuildProjectName).exe" />
-		</ItemGroup>
-
-		<Copy
-		  SourceFiles="@(ProjectOutputs)"
-		  DestinationFolder="$(SolutionDir)"
-		  SkipUnchangedFiles="true" />
-	</Target>
 </Project>

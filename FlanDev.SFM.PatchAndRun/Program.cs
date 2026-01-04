@@ -3,21 +3,40 @@
 namespace FlanDev.SFM.PatchAndRun;
 
 // NOTE:
-// This program is intended as a helper tto optimize devloper workflow.
-// The project has a build-event, copying the program into the solution dir.
+// This program is intended as a helper to optimize devloper workflow.
 
 internal static class Program
 {
     public enum EnvVars
     {
+        FlanDev_SFM_PATCH_DLL,
         FlanDev_SFM_ROOT_DIR,
         FlanDev_SFM_STEAM_ID
     }
 
+
+    /// <summary>
+    /// Patches the game and runs is after.
+    /// </summary>
+    /// <remarks>
+    /// Operating system agnostic.
+    /// Requires the entries in <see cref="EnvVars"/> to be set es enviornmment variables.
+    /// On linux I use proton on steam.
+    /// </remarks>
+    /// <exception cref="PlatformNotSupportedException">Thrown if the application is run on an unsupported operating system.</exception>
     private static void Main()
     {
-        if (GetEnvVar(EnvVars.FlanDev_SFM_ROOT_DIR) is not { } gameRootDir)
+        if (GetEnvVar(EnvVars.FlanDev_SFM_ROOT_DIR) is not { } gameRootDir || GetEnvVar(EnvVars.FlanDev_SFM_PATCH_DLL) is not { } patchDll)
             return;
+
+        if (!File.Exists(patchDll))
+        {
+            PrintError($"Patch file not found at: '{patchDll}'");
+            return;
+        }
+
+        var copyPatchDll = Path.Combine(gameRootDir, "BepInEx", "plugins", Path.GetFileName(patchDll));
+        File.Copy(patchDll, copyPatchDll, true);
 
         if (OperatingSystem.IsWindows())
         {

@@ -1,6 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
+using ExposureUnnoticed2.Scripts.Base;
+using ExposureUnnoticed2.Scripts.InGame;
 using FlanDev.SFM.UI;
 using HarmonyLib;
 
@@ -32,5 +35,14 @@ public sealed class Plugin : BasePlugin
         Log.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} iss unladoing...");
         _harmony.UnpatchSelf();
         return base.Unload();
+    }
+}
+
+public class MyPatches
+{
+
+    [HarmonyPatch(typeof(VibeStatePanelView), nameof(VibeStatePanelView.OnChange))]
+    public void VibeStatePanelViewOnChangePatch(OptionChangeEvent evt)
+    {
     }
 }
