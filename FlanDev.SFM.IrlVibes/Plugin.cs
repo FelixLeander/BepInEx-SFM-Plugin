@@ -1,7 +1,9 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
+using ExposureUnnoticed2.Object3D.AdultGoods;
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
+using ExposureUnnoticed2.ObjectUI.OptionMenu.KeyConfigPanel;
 using ExposureUnnoticed2.Scripts.Base;
 using ExposureUnnoticed2.Scripts.InGame;
 using FlanDev.SFM.UI;
@@ -38,11 +40,14 @@ public sealed class Plugin : BasePlugin
     }
 }
 
-public class MyPatches
-{
+//public class MyPatches
+//{
+//    [HarmonyPatch(typeof(VibeStatePanelView), nameof(VibeStatePanelView.OnChange))]
+//    public void VibeStatePanelViewOnChangePatch(OptionChangeEvent evt)
+//    {
 
-    [HarmonyPatch(typeof(VibeStatePanelView), nameof(VibeStatePanelView.OnChange))]
-    public void VibeStatePanelViewOnChangePatch(OptionChangeEvent evt)
-    {
-    }
-}
+//        var value = UnityEngine.Object.FindObjectsOfType<KeyConfigItemView>();
+//        //CommonVibratorController.ForceSetVibrationMode();
+//        "Changed xxxxxxxxxxxxxxxxx".Log(LogLevel.Warning);
+//    }
+//}

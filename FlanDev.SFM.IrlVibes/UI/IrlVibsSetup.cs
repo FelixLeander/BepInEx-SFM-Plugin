@@ -1,8 +1,7 @@
 ﻿using BepInEx.Logging;
-using ExposureUnnoticed2.ObjectUI.SystemMenu;
+using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
+using ExposureUnnoticed2.Scripts.InGame;
 using UnityEngine;
-using UnityEngine.Serialization;
-using UnityEngine.UI;
 
 namespace FlanDev.SFM.UI;
 
@@ -10,7 +9,6 @@ public sealed class IrlVibsSetup : MonoBehaviour
 {
     public ManualLogSource Log = new(nameof(IrlVibsSetup));
     public BackPlane? rootObject;
-
     public void Awake()
     {
         rootObject ??= gameObject.AddComponent<BackPlane>();
@@ -18,14 +16,21 @@ public sealed class IrlVibsSetup : MonoBehaviour
 
     public void Update()
     {
-        if (!SystemMenuView.Instance)
+        if (!InGameManager.Instance)
             return;
+
+        var vibeStatePanelView = InGameManager.Instance.GetComponentInChildren<VibeStatePanelView>();
+        if (vibeStatePanelView == null)
+            Log.LogError($"{nameof(vibeStatePanelView)} not initialized.");
+        else
+            Log.LogError($"VibeState: {vibeStatePanelView.currentVibeType}");
 
         if (rootObject)
             rootObject?.gameObject.SetActive(true);
         else
             Log.LogError($"{nameof(rootObject)} not initialized.");
     }
+
     //public void Update_B()
     //{
     //    if (SystemMenuView.Instance is not { } instance)

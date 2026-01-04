@@ -4,6 +4,7 @@ namespace FlanDev.SFM.PatchAndRun;
 
 // NOTE:
 // This program is intended as a helper to optimize devloper workflow.
+// It requires specifc envionmnet variables to be set.
 
 internal static class Program
 {
