@@ -2,16 +2,25 @@
 
 namespace FlanDev.SFM.PatchAndRun;
 
-// NOTE:
-// This program is intended as a helper to optimize devloper workflow.
-// It requires specifc envionmnet variables to be set.
 
+/// <remarks>
+/// This program is intended as a helper to optimize devloper workflow.
+/// It requires specifc envionmnet variables to be set. See <see cref="EnvVars"/>
+/// </remarks>
 internal static class Program
 {
     public enum EnvVars
     {
+        /// <summary>The full .DLL path containing the patch.</summary>
         FlanDev_SFM_PATCH_DLL,
+
+        /// <summary>The full directory path containing the game executable.</summary>
         FlanDev_SFM_ROOT_DIR,
+
+        /// <summary>The directory name inside the BepInEx/Plugin directoy, where the <see cref="FlanDev_SFM_PATCH_DLL"/> will be placed.</summary>
+        FlanDev_SFM_PATCH_DIR,
+
+        /// <summary>The steam id of the game.</summary>
         FlanDev_SFM_STEAM_ID
     }
 
@@ -27,21 +36,25 @@ internal static class Program
     /// <exception cref="PlatformNotSupportedException">Thrown if the application is run on an unsupported operating system.</exception>
     private static void Main()
     {
-        if (GetEnvVar(EnvVars.FlanDev_SFM_ROOT_DIR) is not { } gameRootDir || GetEnvVar(EnvVars.FlanDev_SFM_PATCH_DLL) is not { } patchDll)
+        if (GetEnvVar(EnvVars.FlanDev_SFM_ROOT_DIR) is not { } gameRootPath || GetEnvVar(EnvVars.FlanDev_SFM_PATCH_DLL) is not { } patchDllPath || GetEnvVar(EnvVars.FlanDev_SFM_PATCH_DIR) is not { } patchDirPath)
             return;
 
-        if (!File.Exists(patchDll))
+        if (!File.Exists(patchDllPath))
         {
-            PrintError($"Patch file not found at: '{patchDll}'");
+            PrintError($"Patch file not found at: '{patchDllPath}'");
             return;
         }
 
-        var copyPatchDll = Path.Combine(gameRootDir, "BepInEx", "plugins", Path.GetFileName(patchDll));
-        File.Copy(patchDll, copyPatchDll, true);
+        var targetDirPath = Path.Combine(gameRootPath, "BepInEx", "plugins", patchDirPath);
+        if (!Directory.Exists(targetDirPath))
+            Directory.CreateDirectory(targetDirPath);
+
+        var copyPatchDllPath = Path.Combine(targetDirPath, Path.GetFileName(patchDllPath));
+        File.Copy(patchDllPath, copyPatchDllPath, true);
 
         if (OperatingSystem.IsWindows())
         {
-            var gameExeutable = Path.Combine(gameRootDir, "SecretFlasherManaka.exe");
+            var gameExeutable = Path.Combine(gameRootPath, "SecretFlasherManaka.exe");
             try
             {
                 var result = Process.Start(gameExeutable);

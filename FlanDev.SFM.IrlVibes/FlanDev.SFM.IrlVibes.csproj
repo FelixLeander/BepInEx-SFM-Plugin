@@ -11,13 +11,17 @@
 			https://nuget.bepinex.dev/v3/index.json;
 			https://nuget.samboy.dev/v3/index.json
 		</RestoreAdditionalProjectSources>
-		<RootNamespace>FlanDev.SFM</RootNamespace>
 		<Nullable>enable</Nullable>
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Buttplug" Version="4.0.0">
+			<PrivateAssets>none</PrivateAssets>
+			<IncludeAssets>runtime; compile; build; native; contentfiles; analyzers</IncludeAssets>
+		</PackageReference>
 		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
+		<PackageReference Include="ILMerge" Version="3.0.41" />
 		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
 	</ItemGroup>
 
@@ -29,7 +33,7 @@
 			<HintPath>lib\Il2Cppmscorlib.dll</HintPath>
 		</Reference>
 		<Reference Include="Unity.InputSystem">
-		  <HintPath>lib\Unity.InputSystem.dll</HintPath>
+			<HintPath>lib\Unity.InputSystem.dll</HintPath>
 		</Reference>
 		<Reference Include="Unity.TextMeshPro">
 			<HintPath>lib\Unity.TextMeshPro.dll</HintPath>
