@@ -3,7 +3,6 @@ using Buttplug.Client;
 using Buttplug.Core;
 using ExposureUnnoticed2.Master.AdultGoods;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace FlanDev.SFM.IrlVibes.Business;
@@ -51,8 +50,7 @@ internal sealed class BpManager
             foreach (var device in devices)
             {
                 Plugin.manualLogSource.Log(LogLevel.Info, $"Setting {device.Name} to {strength}");
-                //var strengths = Enumerable.Repeat(strength, 2);
-                _ = device.VibrateAsync([strength / 4, strength]);
+                _ = device.VibrateAsync([strength / 4, strength]); // perssoonal prefrence. Also not waiting for the async task to complete to avoid blocking.
             }
         }
         catch (ButtplugClientConnectorException ex)
