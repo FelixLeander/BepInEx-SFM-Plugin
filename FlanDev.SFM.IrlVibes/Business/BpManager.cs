@@ -35,7 +35,7 @@ internal sealed class BpManager
                 VibrationModeType.Off => 0,
                 VibrationModeType.Low => 0.40,
                 VibrationModeType.High => 0.80,
-                VibrationModeType.Random => -1,
+                VibrationModeType.Random => -1, // The game dosent use this mode.
                 _ => throw new NotImplementedException($"Unexpected {nameof(VibrationModeType)}."),
             };
 
