@@ -2,33 +2,48 @@
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
 using ExposureUnnoticed2.Scripts.InGame;
 using UnityEngine;
+using ExposureUnnoticed2.ObjectUI.SystemMenu;
+using FlanderDev.SFM.IrlVibes.UI;
 
-namespace FlanDev.SFM.UI;
+namespace FlanderDev.SFM.IrlVibes.Business;
 
+/// <summary>
+/// Intended as a global singleton manager.
+/// </summary>
 public sealed class IrlVibsSetup : MonoBehaviour
 {
-    public ManualLogSource Log = new(nameof(IrlVibsSetup));
-    public BackPlane? rootObject;
+    public static IrlVibsSetup? Instance { get; set; }
+
     public void Awake()
     {
-        rootObject ??= gameObject.AddComponent<BackPlane>();
+        $"AWAKEN: {nameof(IrlVibsSetup)}".Log();
+
+        if (Instance) // If already exists: keep old, destroy new.
+        {
+            $"A second {nameof(IrlVibsSetup)} tired to be created.".Log(LogLevel.Warning);
+            Destroy(gameObject);
+            return;
+        }
+
+        $"{nameof(IrlVibsSetup)} initialized.".Log();
+        Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
 
     public void Update()
     {
-        if (!InGameManager.Instance)
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+        }
+
+        if (!SystemMenuView.Instance)
             return;
 
         var vibeStatePanelView = InGameManager.Instance.GetComponentInChildren<VibeStatePanelView>();
         if (vibeStatePanelView == null)
-            Log.LogError($"{nameof(vibeStatePanelView)} not initialized.");
+            $"{nameof(vibeStatePanelView)} not initialized.".Log();
         else
-            Log.LogError($"VibeState: {vibeStatePanelView.currentVibeType}");
-
-        if (rootObject)
-            rootObject?.gameObject.SetActive(true);
-        else
-            Log.LogError($"{nameof(rootObject)} not initialized.");
+            $"VibeState: {vibeStatePanelView.currentVibeType}".Log();
     }
 
     //public void Update_B()

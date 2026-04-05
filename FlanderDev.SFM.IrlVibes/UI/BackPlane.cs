@@ -1,9 +1,10 @@
+using FlanderDev.SFM.IrlVibes.Business;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FlanDev.SFM.UI;
+namespace FlanderDev.SFM.IrlVibes.UI;
 
 public sealed class BackPlane : MonoBehaviour
 {
@@ -11,11 +12,7 @@ public sealed class BackPlane : MonoBehaviour
     public GameObject? Parent;
     public readonly List<ConnectButton> ConnectButtons = [];
 
-    public void AddButton(ConnectButton button)
-    {
-        ConnectButtons.Add(button);
-    }
-
+    
     public void Awake()
     {
         var go = new GameObject(nameof(BackPlane));
@@ -33,5 +30,10 @@ public sealed class BackPlane : MonoBehaviour
         var image = Self.AddComponent<Image>();
         image.color = new Color(0, 0, 0, 0.5f);
         image.pixelsPerUnitMultiplier = 1f;
+    }
+
+    public void AddButton(ConnectButton button)
+    {
+        ConnectButtons.Add(button);
     }
 }

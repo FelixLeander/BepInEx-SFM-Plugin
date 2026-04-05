@@ -3,12 +3,26 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 18
 VisualStudioVersion = 18.0.11222.15
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanDev.SFM.IrlVibes", "FlanDev.SFM.IrlVibes\FlanDev.SFM.IrlVibes.csproj", "{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.IrlVibes", "FlanderDev.SFM.IrlVibes\FlanderDev.SFM.IrlVibes.csproj", "{329D45D4-E07F-4B0C-9356-6AAEBCDF359B}"
 	ProjectSection(ProjectDependencies) = postProject
 		{6299D751-78B9-4647-A426-A463B12E900D} = {6299D751-78B9-4647-A426-A463B12E900D}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanDev.SFM.PatchAndRun", "FlanDev.SFM.PatchAndRun\FlanDev.SFM.PatchAndRun.csproj", "{6299D751-78B9-4647-A426-A463B12E900D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.PatchAndRun", "FlanderDev.SFM.PatchAndRun\FlanderDev.SFM.PatchAndRun.csproj", "{6299D751-78B9-4647-A426-A463B12E900D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{6A8A408C-4885-4F18-A7AE-C7311AEEE505}"
+	ProjectSection(SolutionItems) = preProject
+		DLLs\Assembly-CSharp.dll = DLLs\Assembly-CSharp.dll
+		DLLs\Il2Cppmscorlib.dll = DLLs\Il2Cppmscorlib.dll
+		DLLs\Unity.InputSystem.dll = DLLs\Unity.InputSystem.dll
+		DLLs\Unity.TextMeshPro.dll = DLLs\Unity.TextMeshPro.dll
+		DLLs\UnityEngine.CoreModule.dll = DLLs\UnityEngine.CoreModule.dll
+		DLLs\UnityEngine.dll = DLLs\UnityEngine.dll
+		DLLs\UnityEngine.InputLegacyModule.dll = DLLs\UnityEngine.InputLegacyModule.dll
+		DLLs\UnityEngine.TextRenderingModule.dll = DLLs\UnityEngine.TextRenderingModule.dll
+		DLLs\UnityEngine.UI.dll = DLLs\UnityEngine.UI.dll
+		DLLs\UnityEngine.UIModule.dll = DLLs\UnityEngine.UIModule.dll
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

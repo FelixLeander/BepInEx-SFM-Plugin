@@ -1,0 +1,10 @@
+{
+  "scenarioId": "SdkStyleConversion",
+  "operationId": "5af39de0-c058-4ab1-9512-e4f930cefbe4",
+  "description": "Convert non-SDK-style projects to SDK-style projects.",
+  "startTime": "2026-03-02T19:04:00.9573362Z",
+  "lastUpdateTime": "2026-03-02T19:06:53.4674357Z",
+  "stage": "Assessment",
+  "properties": {},
+  "folderPath": ""
+}
