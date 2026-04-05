@@ -33,7 +33,6 @@ public sealed class IrlVibsSetup : MonoBehaviour
     public void Update()
     {
         return;
-        HandleFlyMovement();
 
         if (Input.GetKeyDown(KeyCode.F1))
             "DWADWAWD".Log();
