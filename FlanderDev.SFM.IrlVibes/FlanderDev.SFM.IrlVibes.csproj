@@ -40,6 +40,9 @@
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>..\DLLs\UnityEngine.CoreModule.dll</HintPath>
 		</Reference>
+		<Reference Include="UnityEngine.PhysicsModule">
+		  <HintPath>..\DLLs\UnityEngine.PhysicsModule.dll</HintPath>
+		</Reference>
 		<Reference Include="UnityEngine.TextRenderingModule">
 			<HintPath>..\DLLs\UnityEngine.TextRenderingModule.dll</HintPath>
 		</Reference>

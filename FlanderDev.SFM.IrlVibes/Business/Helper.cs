@@ -1,4 +1,7 @@
+using AsmResolver.DotNet;
 using BepInEx.Logging;
+using ExposureUnnoticed2.Object3D.Player.Scripts;
+using UnityEngine;
 
 namespace FlanderDev.SFM.IrlVibes.Business;
 
@@ -13,4 +16,16 @@ public static class Helper
         LogLevel.Debug
 #endif
         ) => Logger?.Log(logLevel, text);
+
+    public static void MovePlayer(PlayerController playerController, Vector3 destination)
+    {
+        if (!playerController)
+            return;
+
+        playerController.enabled = false;
+        playerController.transform.position = destination;
+        playerController.enabled = true;
+
+        $"Teleported {nameof(PlayerController)} to {destination}".Log();
+    }
 }

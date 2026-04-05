@@ -19,6 +19,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{6A8A408C-4
 		DLLs\UnityEngine.CoreModule.dll = DLLs\UnityEngine.CoreModule.dll
 		DLLs\UnityEngine.dll = DLLs\UnityEngine.dll
 		DLLs\UnityEngine.InputLegacyModule.dll = DLLs\UnityEngine.InputLegacyModule.dll
+		DLLs\UnityEngine.PhysicsModule.dll = DLLs\UnityEngine.PhysicsModule.dll
 		DLLs\UnityEngine.TextRenderingModule.dll = DLLs\UnityEngine.TextRenderingModule.dll
 		DLLs\UnityEngine.UI.dll = DLLs\UnityEngine.UI.dll
 		DLLs\UnityEngine.UIModule.dll = DLLs\UnityEngine.UIModule.dll

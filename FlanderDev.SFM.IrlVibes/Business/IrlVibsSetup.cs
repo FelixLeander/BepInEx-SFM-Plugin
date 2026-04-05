@@ -32,9 +32,11 @@ public sealed class IrlVibsSetup : MonoBehaviour
 
     public void Update()
     {
+        return;
+        HandleFlyMovement();
+
         if (Input.GetKeyDown(KeyCode.F1))
-        {
-        }
+            "DWADWAWD".Log();
 
         if (!SystemMenuView.Instance)
             return;
@@ -44,6 +46,37 @@ public sealed class IrlVibsSetup : MonoBehaviour
             $"{nameof(vibeStatePanelView)} not initialized.".Log();
         else
             $"VibeState: {vibeStatePanelView.currentVibeType}".Log();
+    }
+
+    private void HandleFlyMovement()
+    {
+        // Try to orient movement relative to the main camera.
+        // If there's no camera, fall back to world space.
+        Transform reference = Camera.main != null ? Camera.main.transform : transform;
+
+        float horizontal = Input.GetAxis("Horizontal");   // A / D
+        float vertical = Input.GetAxis("Vertical");       // W / S
+        float upDown = 0f;
+
+        if (Input.GetKey(KeyCode.UpArrow)) upDown = 1f;
+        if (Input.GetKey(KeyCode.DownArrow)) upDown = -1f;
+
+        // Build a movement vector from the camera's forward/right directions,
+        // but strip the Y component from forward so W/S doesn't tilt up/down
+        // when the camera is angled. Players expect W to go forward, not skyward.
+        Vector3 moveDir =
+            reference.forward * vertical +    // Forward / back (camera-relative, flat)
+            reference.right * horizontal +    // Strafe left / right
+            Vector3.up * upDown;              // Absolute vertical
+
+        // Normalize to prevent diagonal movement being faster,
+        // then only normalize if magnitude > 1 to keep slow analog input working.
+        if (moveDir.magnitude > 1f)
+            moveDir.Normalize();
+
+        // Directly translate the Transform — this bypasses all physics.
+        InGameManager.Instance.transform.position += moveDir * 10f * Time.deltaTime;
+        InGameManager.Instance.transform.position.ToString().Log();
     }
 
     //public void Update_B()
