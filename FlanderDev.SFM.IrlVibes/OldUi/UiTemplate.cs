@@ -8,7 +8,6 @@ using ExposureUnnoticed2.ObjectUI.InGameMenu;
 using ExposureUnnoticed2.Scripts.InGame;
 using System;
 using System.Collections.Generic;
-using System.Text.Json;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
@@ -322,7 +321,7 @@ public sealed class UiTemplate : MonoBehaviour
 
         gameGui = new GameObject("MyPhoneGUI");
         DontDestroyOnLoad(gameGui);
-        
+
         var canvas = gameGui.AddComponent<Canvas>();
         canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 

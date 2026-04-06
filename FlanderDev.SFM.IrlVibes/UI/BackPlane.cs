@@ -1,5 +1,4 @@
 using FlanderDev.SFM.IrlVibes.Business;
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,7 +11,7 @@ public sealed class BackPlane : MonoBehaviour
     public GameObject? Parent;
     public readonly List<ConnectButton> ConnectButtons = [];
 
-    
+
     public void Awake()
     {
         var go = new GameObject(nameof(BackPlane));

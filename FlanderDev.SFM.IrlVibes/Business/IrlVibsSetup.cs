@@ -1,9 +1,8 @@
 ﻿using BepInEx.Logging;
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
+using ExposureUnnoticed2.ObjectUI.SystemMenu;
 using ExposureUnnoticed2.Scripts.InGame;
 using UnityEngine;
-using ExposureUnnoticed2.ObjectUI.SystemMenu;
-using FlanderDev.SFM.IrlVibes.UI;
 
 namespace FlanderDev.SFM.IrlVibes.Business;
 
@@ -32,11 +31,6 @@ public sealed class IrlVibsSetup : MonoBehaviour
 
     public void Update()
     {
-        return;
-
-        if (Input.GetKeyDown(KeyCode.F1))
-            "DWADWAWD".Log();
-
         if (!SystemMenuView.Instance)
             return;
 

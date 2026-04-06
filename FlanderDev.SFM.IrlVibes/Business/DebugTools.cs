@@ -1,17 +1,7 @@
-﻿using BepInEx;
-using BepInEx.Core.Logging.Interpolation;
-using BepInEx.Logging;
-using BepInEx.Unity.IL2CPP;
+﻿using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
 using ExposureUnnoticed2.Object3D.Player.Scripts.Other;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
-
 
 namespace FlanderDev.SFM.IrlVibes.Business;
 
@@ -34,7 +24,7 @@ public sealed class TeleportOnTopPlugin : MonoBehaviour
         if (!Floating && Input.GetKeyDown(ToggleGravity))
         {
             Floating = !Floating;
-            $"ENABLE FLOAT: {Floating}".Log();
+            $"ENABLE FLOAT: {Floating}".Log(LogLevel.Info);
 
             foreach (var downhillChecker in PlayerController.Instance.GetComponentsInChildren<DownhillChecker>())
                 downhillChecker.enabled = false;
@@ -46,7 +36,7 @@ public sealed class TeleportOnTopPlugin : MonoBehaviour
         else if (Floating && Input.GetKeyDown(ToggleGravity)) // if not floating, toggle floating and enable gravity and downhillCheckers
         {
             Floating = !Floating;
-            $"DISABLE FLOAT: {Floating}".Log();
+            $"DISABLE FLOAT: {Floating}".Log(LogLevel.Info);
 
             foreach (var downhillChecker in PlayerController.Instance.GetComponentsInChildren<DownhillChecker>())
                 downhillChecker.enabled = true;

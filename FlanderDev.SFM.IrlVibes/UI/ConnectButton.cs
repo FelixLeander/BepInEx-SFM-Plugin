@@ -1,7 +1,7 @@
-using System;
 using BepInEx.Logging;
 using FlanderDev.SFM.IrlVibes.Business;
 using HadakaCoat.ObjectsUi.Common.Button;
+using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;

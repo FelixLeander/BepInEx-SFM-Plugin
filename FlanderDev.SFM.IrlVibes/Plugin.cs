@@ -5,8 +5,6 @@ using HarmonyLib;
 using System;
 using UnityEngine.SceneManagement;
 
-
-
 namespace FlanderDev.SFM.IrlVibes;
 
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
