@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{6A8A408C-4
 		DLLs\Il2Cppmscorlib.dll = DLLs\Il2Cppmscorlib.dll
 		DLLs\Unity.InputSystem.dll = DLLs\Unity.InputSystem.dll
 		DLLs\Unity.TextMeshPro.dll = DLLs\Unity.TextMeshPro.dll
+		DLLs\UnityEngine.AudioModule.dll = DLLs\UnityEngine.AudioModule.dll
 		DLLs\UnityEngine.CoreModule.dll = DLLs\UnityEngine.CoreModule.dll
 		DLLs\UnityEngine.dll = DLLs\UnityEngine.dll
 		DLLs\UnityEngine.InputLegacyModule.dll = DLLs\UnityEngine.InputLegacyModule.dll
@@ -24,6 +25,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{6A8A408C-4
 		DLLs\UnityEngine.UI.dll = DLLs\UnityEngine.UI.dll
 		DLLs\UnityEngine.UIModule.dll = DLLs\UnityEngine.UIModule.dll
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.MapManager", "FlanderDev.SFM.MapManager\FlanderDev.SFM.MapManager.csproj", "{98FADFF2-9569-4A1F-8D4B-F730221E4344}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +42,10 @@ Global
 		{6299D751-78B9-4647-A426-A463B12E900D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6299D751-78B9-4647-A426-A463B12E900D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6299D751-78B9-4647-A426-A463B12E900D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{98FADFF2-9569-4A1F-8D4B-F730221E4344}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{98FADFF2-9569-4A1F-8D4B-F730221E4344}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{98FADFF2-9569-4A1F-8D4B-F730221E4344}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{98FADFF2-9569-4A1F-8D4B-F730221E4344}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

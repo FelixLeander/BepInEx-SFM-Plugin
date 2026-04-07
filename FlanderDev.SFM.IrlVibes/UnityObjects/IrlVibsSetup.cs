@@ -2,9 +2,10 @@
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
 using ExposureUnnoticed2.ObjectUI.SystemMenu;
 using ExposureUnnoticed2.Scripts.InGame;
+using FlanderDev.SFM.IrlVibes.Business;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.Business;
+namespace FlanderDev.SFM.IrlVibes.UnityObjects;
 
 /// <summary>
 /// Intended as a global singleton manager.

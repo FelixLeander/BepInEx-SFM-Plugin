@@ -1,20 +1,17 @@
 ﻿using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
 using ExposureUnnoticed2.Object3D.Player.Scripts.Other;
+using FlanderDev.SFM.IrlVibes.Business;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.Business;
+namespace FlanderDev.SFM.IrlVibes.UnityObjects;
 
-/// <summary>
-/// MonoBehaviour that runs every frame and listens for the hotkey.
-/// We use a MonoBehaviour instead of Harmony patches because this is
-/// runtime input polling — there is no game method to hook into.
-/// </summary>
-public sealed class TeleportOnTopPlugin : MonoBehaviour
+public sealed class DebugFloat : MonoBehaviour
 {
-    private const KeyCode ToggleGravity = KeyCode.F1;
-    private const KeyCode FlyUp = KeyCode.UpArrow;
-    private const KeyCode FlyDown = KeyCode.DownArrow;
+    private const KeyCode ToggleGravity = KeyCode.RightControl;
+    private const KeyCode FloatUp = KeyCode.UpArrow;
+    private const KeyCode FloatDown = KeyCode.DownArrow;
+    private const KeyCode BoostFloat = KeyCode.RightShift;
 
     private bool Floating;
 
@@ -45,11 +42,12 @@ public sealed class TeleportOnTopPlugin : MonoBehaviour
             rb.useGravity = true;
         }
 
-        var isUp = Input.GetKey(FlyUp);
-        if (isUp || Input.GetKey(FlyDown))
+        var isUp = Input.GetKey(FloatUp);
+        if (isUp || Input.GetKey(FloatDown))
         {
+            var boostFloat = Input.GetKey(BoostFloat) ? 10f : 1f;
             var t = PlayerController.Instance.transform.position;
-            Helper.MovePlayer(PlayerController.Instance, new Vector3(t.x, t.y += (isUp ? 0.1f : -0.1f), t.z));
+            Helper.MovePlayer(PlayerController.Instance, new Vector3(t.x, t.y += (isUp ? 0.5f : -0.5f) * boostFloat * Time.deltaTime, t.z));
         }
     }
 }

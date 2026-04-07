@@ -1,12 +1,15 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
+
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<AssemblyName>FlanderDev.SFM.IrlVibes</AssemblyName>
-		<Product>FlanderDev's Irl-Vibes</Product>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<AssemblyName>FlanderDev.SFM.MapManager</AssemblyName>
+		<Product>FlanderDev's MapManager</Product>
 		<Version>1.0.0</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
-		<RootNamespace>FlanderDev.SFM.IrlVibes</RootNamespace>
+		<RootNamespace>FlanderDev.SFM.MapManager</RootNamespace>
 		<Nullable>enable</Nullable>
 		<RestoreAdditionalProjectSources>
 			https://api.nuget.org/v3/index.json;
@@ -36,9 +39,6 @@
 		</Reference>
 		<Reference Include="UnityEngine">
 			<HintPath>..\DLLs\UnityEngine.dll</HintPath>
-		</Reference>
-		<Reference Include="UnityEngine.AudioModule">
-		  <HintPath>..\DLLs\UnityEngine.AudioModule.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>..\DLLs\UnityEngine.CoreModule.dll</HintPath>
