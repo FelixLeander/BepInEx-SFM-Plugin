@@ -10,22 +10,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.IrlVibes", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.PatchAndRun", "FlanderDev.SFM.PatchAndRun\FlanderDev.SFM.PatchAndRun.csproj", "{6299D751-78B9-4647-A426-A463B12E900D}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DLLs", "DLLs", "{6A8A408C-4885-4F18-A7AE-C7311AEEE505}"
-	ProjectSection(SolutionItems) = preProject
-		DLLs\Assembly-CSharp.dll = DLLs\Assembly-CSharp.dll
-		DLLs\Il2Cppmscorlib.dll = DLLs\Il2Cppmscorlib.dll
-		DLLs\Unity.InputSystem.dll = DLLs\Unity.InputSystem.dll
-		DLLs\Unity.TextMeshPro.dll = DLLs\Unity.TextMeshPro.dll
-		DLLs\UnityEngine.AudioModule.dll = DLLs\UnityEngine.AudioModule.dll
-		DLLs\UnityEngine.CoreModule.dll = DLLs\UnityEngine.CoreModule.dll
-		DLLs\UnityEngine.dll = DLLs\UnityEngine.dll
-		DLLs\UnityEngine.InputLegacyModule.dll = DLLs\UnityEngine.InputLegacyModule.dll
-		DLLs\UnityEngine.PhysicsModule.dll = DLLs\UnityEngine.PhysicsModule.dll
-		DLLs\UnityEngine.TextRenderingModule.dll = DLLs\UnityEngine.TextRenderingModule.dll
-		DLLs\UnityEngine.UI.dll = DLLs\UnityEngine.UI.dll
-		DLLs\UnityEngine.UIModule.dll = DLLs\UnityEngine.UIModule.dll
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FlanderDev.SFM.MapManager", "FlanderDev.SFM.MapManager\FlanderDev.SFM.MapManager.csproj", "{98FADFF2-9569-4A1F-8D4B-F730221E4344}"
 EndProject
 Global

@@ -11,7 +11,7 @@ namespace FlanderDev.SFM.MapManager;
 /// </summary>
 public class SceneDumperBehaviour : MonoBehaviour
 {
-    private void Awake()
+    public void Awake()
     {
         DontDestroyOnLoad(gameObject);
 
@@ -19,13 +19,14 @@ public class SceneDumperBehaviour : MonoBehaviour
         SceneManager.sceneLoaded += (UnityEngine.Events.UnityAction<Scene, LoadSceneMode>)OnSceneLoaded;
     }
 
-    private void Update()
+    public void Update()
     {
         // Press F8 to manually trigger a dump of the active scene
         if (Input.GetKeyDown(KeyCode.F8))
         {
-            Plugin.Log.LogInfo("F8 pressed – dumping active scene…");
+            Plugin.Log.LogInfo($"Dump start {DateTime.Now}");
             DumpActiveScene();
+            Plugin.Log.LogInfo($"Dump start {DateTime.Now}");
         }
     }
 
@@ -176,7 +177,7 @@ public class SceneDumperBehaviour : MonoBehaviour
                 sb.Append($"{indent}useGravity  : {rb.useGravity}");
                 break;
 
-            case Unity audio:
+            case AudioSource audio:
                 sb.AppendLine();
                 sb.AppendLine($"{indent}clip    : {(audio.clip != null ? audio.clip.name : "null")}");
                 sb.AppendLine($"{indent}volume  : {audio.volume:F2}  pitch: {audio.pitch:F2}");

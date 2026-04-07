@@ -13,14 +13,10 @@ namespace FlanderDev.SFM.IrlVibes;
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
 public sealed class Plugin : BasePlugin
 {
-    public static ConfigEntry<KeyboardShortcut> GGG;
-
     private readonly Harmony _harmony = new(MyPluginInfo.PLUGIN_GUID);
 
     public override void Load()
     {
-        GGG.Value.IsDown();
-
         Log.LogInfo($"Initialzing.");
         Helper.Logger = Log;
         _harmony.PatchAll();
