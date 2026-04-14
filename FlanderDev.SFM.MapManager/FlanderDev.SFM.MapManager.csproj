@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -21,7 +21,6 @@
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.755" IncludeAssets="compile" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
-		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -39,6 +38,9 @@
 		</Reference>
 		<Reference Include="BepInEx.Unity.IL2CPP">
 		  <HintPath>..\DLLs\BepInEx.Unity.IL2CPP.dll</HintPath>
+		</Reference>
+		<Reference Include="Il2CppInterop.Runtime">
+		  <HintPath>..\DLLs\Il2CppInterop.Runtime.dll</HintPath>
 		</Reference>
 		<Reference Include="Il2Cppmscorlib">
 			<HintPath>..\DLLs\Il2Cppmscorlib.dll</HintPath>
