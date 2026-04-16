@@ -17,6 +17,9 @@ public sealed class DebugFloat : MonoBehaviour
 
     public void Update()
     {
+        if (Plugin.Shortcut.IsDown())
+            Plugin.Instance.Log.LogFatal("YYYYYYYYYYYYYYYYYYYY");
+
         // if not floating, toggle floating and disable gravity and downhillCheckers
         if (!Floating && Input.GetKeyDown(ToggleGravity))
         {

@@ -1,20 +1,20 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
-using FlanderDev.SFM.IrlVibes.ShortcutFramework;
+using FlanderDev.SFM.Common.ShortcutFramework;
 using System;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.Business;
+namespace FlanderDev.SFM.Common.Business;
 
-public static class Helper
+public static class XHelper
 {
     public static ManualLogSource? Logger { get; set; }
 
     public const double GoldenRatio = 1.61803398874989484820458683436;
-    public static KeyShortcut CreateShortCut(
+    public static XXXKeyShortcut CreateShortCut(
         this ConfigFile config,
-        KeyConfig defaultShortcut,
+        XXXKeyConfig defaultShortcut,
         string keyName,
         string description = "",
         string section = "Shortcuts")

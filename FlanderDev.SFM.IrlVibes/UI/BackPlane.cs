@@ -20,7 +20,7 @@ public sealed class BackPlane : MonoBehaviour
         go.transform.SetParent(Parent.transform);
 
         var x = Parent.GetComponent<RectTransform>().rect.width / 4;
-        var y = x * Helper.GoldenRatio;
+        var y = (int) (x * Helper.GoldenRatio);
 
         rect.sizeDelta = new Vector2(x, y);
         var half = rect.sizeDelta / 2;

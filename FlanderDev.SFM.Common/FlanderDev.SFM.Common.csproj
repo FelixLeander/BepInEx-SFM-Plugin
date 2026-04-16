@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<AssemblyName>FlanderDev.SFM.IrlVibes</AssemblyName>
-		<Product>FlanderDev's Irl-Vibes</Product>
+		<AssemblyName>FlanderDev.SFM.Common</AssemblyName>
+		<Product>FlanderDev's Common</Product>
 		<Version>1.0.0</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
-		<RootNamespace>FlanderDev.SFM.IrlVibes</RootNamespace>
+		<RootNamespace>FlanderDev.SFM.Common</RootNamespace>
 		<Nullable>enable</Nullable>
 		<RestoreAdditionalProjectSources>
 			https://api.nuget.org/v3/index.json;
@@ -18,11 +18,6 @@
 	<ItemGroup>
 		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.755" IncludeAssets="compile" />
 		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
-		<PackageReference Include="Buttplug" Version="5.0.0" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <ProjectReference Include="..\FlanderDev.SFM.Common\FlanderDev.SFM.Common.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -45,7 +40,7 @@
 			<HintPath>..\DLLs\UnityEngine.AudioModule.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.AnimationModule">
-		  <HintPath>..\DLLs\UnityEngine.AnimationModule.dll</HintPath>
+			<HintPath>..\DLLs\UnityEngine.AnimationModule.dll</HintPath>
 		</Reference>
 		<Reference Include="UnityEngine.CoreModule">
 			<HintPath>..\DLLs\UnityEngine.CoreModule.dll</HintPath>
