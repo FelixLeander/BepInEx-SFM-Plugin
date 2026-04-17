@@ -1,12 +1,12 @@
 using BepInEx.Logging;
-using FlanderDev.SFM.IrlVibes.Business;
+using FlanderDev.SFM.General.Business;
 using HadakaCoat.ObjectsUi.Common.Button;
 using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FlanderDev.SFM.IrlVibes.UI;
+namespace FlanderDev.SFM.General.UI;
 
 public sealed class ConnectButton(GameObject parent, string gameObjectName = nameof(ConnectButton), int posFromTop = 0) : MonoBehaviour
 {

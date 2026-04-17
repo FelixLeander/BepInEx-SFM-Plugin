@@ -5,4 +5,4 @@
 
 using System.Diagnostics.CodeAnalysis;
 
-[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Unity Update function", Scope = "member", Target = "~M:FlanderDev.SFM.IrlVibes.UI.IrlVibsSetup.Awake")]
+[assembly: SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "Unity Update function", Scope = "member", Target = "~M:FlanderDev.SFM.General.UI.GeneralSetup.Awake")]

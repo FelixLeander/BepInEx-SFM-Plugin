@@ -1,12 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
-		<AssemblyName>FlanderDev.SFM.IrlVibes</AssemblyName>
-		<Product>FlanderDev.SFM.IrlVibes</Product>
+		<AssemblyName>FlanderDev.SFM.General</AssemblyName>
+		<Product>FlanderDev.SFM.General</Product>
 		<Version>1.0.0</Version>
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 		<LangVersion>latest</LangVersion>
-		<RootNamespace>FlanderDev.SFM.IrlVibes</RootNamespace>
+		<RootNamespace>FlanderDev.SFM.General</RootNamespace>
 		<Nullable>enable</Nullable>
 		<RestoreAdditionalProjectSources>
 			https://api.nuget.org/v3/index.json;
@@ -16,15 +16,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Buttplug" Version="4.0.0">
-			<PrivateAssets>none</PrivateAssets>
-			<IncludeAssets>runtime; compile; build; native; contentfiles; analyzers</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.*" IncludeAssets="compile" />
-		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.*" />
-		<PackageReference Include="ImGui.NET" Version="1.91.6.1" />
+		<PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.755" IncludeAssets="compile" />
+		<PackageReference Include="BepInEx.PluginInfoProps" Version="2.1.0" />
+		<PackageReference Include="Buttplug" Version="4.0.0" />
 	</ItemGroup>
-
+	
 	<ItemGroup>
 		<Reference Include="Assembly-CSharp">
 			<HintPath>..\DLLs\Assembly-CSharp.dll</HintPath>

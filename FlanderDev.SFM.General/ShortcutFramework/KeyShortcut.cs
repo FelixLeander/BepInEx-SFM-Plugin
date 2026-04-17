@@ -1,8 +1,8 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using FlanderDev.SFM.IrlVibes.Business;
+using FlanderDev.SFM.General.Business;
 
-namespace FlanderDev.SFM.IrlVibes.ShortcutFramework;
+namespace FlanderDev.SFM.General.ShortcutFramework;
 
 /// <summary>
 /// Binds a <see cref="KeyConfig"/> to a BepInEx config entry so users

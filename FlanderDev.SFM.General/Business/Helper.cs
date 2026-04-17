@@ -1,11 +1,11 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
-using FlanderDev.SFM.IrlVibes.ShortcutFramework;
+using FlanderDev.SFM.General.ShortcutFramework;
 using System;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.Business;
+namespace FlanderDev.SFM.General.Business;
 
 public static class Helper
 {

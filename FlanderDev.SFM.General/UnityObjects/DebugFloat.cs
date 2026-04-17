@@ -1,10 +1,10 @@
 ﻿using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
 using ExposureUnnoticed2.Object3D.Player.Scripts.Other;
-using FlanderDev.SFM.IrlVibes.Business;
+using FlanderDev.SFM.General.Business;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.UnityObjects;
+namespace FlanderDev.SFM.General.UnityObjects;
 
 public sealed class DebugFloat : MonoBehaviour
 {

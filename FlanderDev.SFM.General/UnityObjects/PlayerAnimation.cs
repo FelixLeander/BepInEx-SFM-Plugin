@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.UnityObjects;
+namespace FlanderDev.SFM.General.UnityObjects;
 
 internal class PlayerAnimation : MonoBehaviour
 {

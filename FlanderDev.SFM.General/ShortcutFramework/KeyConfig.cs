@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.ShortcutFramework;
+namespace FlanderDev.SFM.General.ShortcutFramework;
 
 /// <summary>
 /// A keyboard shortcut with an optional set of modifier keys.

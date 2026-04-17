@@ -1,9 +1,9 @@
-using FlanderDev.SFM.IrlVibes.Business;
+using FlanderDev.SFM.General.Business;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace FlanderDev.SFM.IrlVibes.UI;
+namespace FlanderDev.SFM.General.UI;
 
 public sealed class BackPlane : MonoBehaviour
 {

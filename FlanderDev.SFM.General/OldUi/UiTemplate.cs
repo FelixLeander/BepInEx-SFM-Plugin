@@ -14,7 +14,7 @@ using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace FlanderDev.SFM.IrlVibes.OldUi;
+namespace FlanderDev.SFM.General.OldUi;
 
 public sealed class UiTemplate : MonoBehaviour
 {

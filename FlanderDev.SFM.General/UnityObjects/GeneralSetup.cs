@@ -2,30 +2,30 @@
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
 using ExposureUnnoticed2.ObjectUI.SystemMenu;
 using ExposureUnnoticed2.Scripts.InGame;
-using FlanderDev.SFM.IrlVibes.Business;
+using FlanderDev.SFM.General.Business;
 using UnityEngine;
 
-namespace FlanderDev.SFM.IrlVibes.UnityObjects;
+namespace FlanderDev.SFM.General.UnityObjects;
 
 /// <summary>
 /// Intended as a global singleton manager.
 /// </summary>
-public sealed class IrlVibsSetup : MonoBehaviour
+public sealed class GeneralSetup : MonoBehaviour
 {
-    public static IrlVibsSetup? Instance { get; set; }
+    public static GeneralSetup? Instance { get; set; }
 
     public void Awake()
     {
-        $"AWAKEN: {nameof(IrlVibsSetup)}".Log();
+        $"AWAKEN: {nameof(GeneralSetup)}".Log();
 
         if (Instance) // If already exists: keep old, destroy new.
         {
-            $"A second {nameof(IrlVibsSetup)} tired to be created.".Log(LogLevel.Warning);
+            $"A second {nameof(GeneralSetup)} tired to be created.".Log(LogLevel.Warning);
             Destroy(gameObject);
             return;
         }
 
-        $"{nameof(IrlVibsSetup)} initialized.".Log();
+        $"{nameof(GeneralSetup)} initialized.".Log();
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
@@ -124,7 +124,7 @@ public sealed class IrlVibsSetup : MonoBehaviour
     //    var templateMenuEntry = SystemMenuView.Instance.buttonGroupManager.buttons[3].GameObject();
     //    var menuTransform = SystemMenuView.Instance.buttonGroupManager.gameObject.transform;
     //    SystemMenuButton = Instantiate(templateMenuEntry, menuTransform);
-    //    SystemMenuButton.name = "IrlVibes";
+    //    SystemMenuButton.name = "General";
 
     //    // I am confusion
     //    var buttonView = SystemMenuButton.GetComponent<ButtonView>();
