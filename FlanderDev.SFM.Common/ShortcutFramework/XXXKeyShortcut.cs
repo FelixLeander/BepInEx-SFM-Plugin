@@ -1,5 +1,4 @@
 using BepInEx.Configuration;
-using BepInEx.Logging;
 
 namespace FlanderDev.SFM.Common.ShortcutFramework;
 

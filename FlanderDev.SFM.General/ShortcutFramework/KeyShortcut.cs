@@ -1,6 +1,4 @@
 using BepInEx.Configuration;
-using BepInEx.Logging;
-using FlanderDev.SFM.General.Business;
 
 namespace FlanderDev.SFM.General.ShortcutFramework;
 

@@ -2,7 +2,6 @@
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
 using FlanderDev.SFM.IrlVibes.Mono;
-using FlanderDev.SFM.IrlVibes;
 using HarmonyLib;
 
 namespace FlanderDev.SFM.IrlVibes;

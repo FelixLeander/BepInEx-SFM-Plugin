@@ -1,7 +1,6 @@
 ﻿using BepInEx;
 using BepInEx.Logging;
 using BepInEx.Unity.IL2CPP;
-using FlanderDev.SFM.MapManager.Dumpers;
 using FlanderDev.SFM.MapManager.SceneManaging;
 using HarmonyLib;
 using System.Diagnostics;

@@ -1,11 +1,7 @@
 ﻿using BepInEx.Logging;
-using Buttplug.Client;
-using ExposureUnnoticed2.Master.AdultGoods;
 using ExposureUnnoticed2.ObjectUI.InGame.VIbeStatePanel;
 using ExposureUnnoticed2.Scripts.InGame;
 using FlanderDev.SFM.IrlVibes.Business;
-using LibCpp2IL.Elf;
-using System.Linq;
 using UnityEngine;
 
 namespace FlanderDev.SFM.IrlVibes.Mono;

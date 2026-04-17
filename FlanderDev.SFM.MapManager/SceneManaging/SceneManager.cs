@@ -1,13 +1,5 @@
-﻿using BepInEx;
-using BepInEx.Unity.IL2CPP;
-using Il2CppInterop.Runtime.Injection;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using UnityEngine;
-using UnityEngine.Rendering.PostProcessing;
 using UnityEngine.SceneManagement;
 
 namespace FlanderDev.SFM.MapManager.SceneManaging;

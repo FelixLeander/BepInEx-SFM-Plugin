@@ -3,12 +3,8 @@ using Buttplug.Client;
 using Buttplug.Core;
 using ExposureUnnoticed2.Master.AdultGoods;
 using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Threading.Tasks;
-using System.Xml.Schema;
-using UnityEngine;
 
 namespace FlanderDev.SFM.IrlVibes.Business;
 

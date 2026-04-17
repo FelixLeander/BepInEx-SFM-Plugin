@@ -2,7 +2,6 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using ExposureUnnoticed2.Object3D.Player.Scripts;
 using FlanderDev.SFM.General.ShortcutFramework;
-using System;
 using UnityEngine;
 
 namespace FlanderDev.SFM.General.Business;

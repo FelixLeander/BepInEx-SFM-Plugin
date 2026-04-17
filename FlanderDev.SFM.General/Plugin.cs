@@ -1,13 +1,10 @@
 ﻿using BepInEx;
-using BepInEx.Configuration;
 using BepInEx.Unity.IL2CPP;
 using FlanderDev.SFM.General.Business;
 using FlanderDev.SFM.General.ShortcutFramework;
 using FlanderDev.SFM.General.UnityObjects;
 using HarmonyLib;
 using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
